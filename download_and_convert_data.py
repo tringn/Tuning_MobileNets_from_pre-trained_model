@@ -40,7 +40,6 @@ from datasets import download_and_convert_cifar10
 from datasets import download_and_convert_flowers
 from datasets import download_and_convert_mnist
 from datasets import convert_poses
-from datasets import convert_hospital
 
 FLAGS = tf.app.flags.FLAGS
 
