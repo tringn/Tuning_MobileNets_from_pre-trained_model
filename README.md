@@ -60,9 +60,11 @@ cp ./datasets/poses.py ./datasets/sat.py
 ```ruby
 mkdir ./my_checkpoints
 wget https://storage.googleapis.com/mobilenet_v2/checkpoints/mobilenet_v2_1.4_224.tgz 
-mv mobilenet_v2_1.4_224.tgz my_checkpoint
+mv mobilenet_v2_1.4_224.tgz my_checkpoints
+cd my_checkpoints
 tar -xvf mobilenet_v2_1.4_224.tgz
 rm mobilenet_v2_1.4_224.tgz
+cd ..
 ```
 2. Fine-tune your own model
 To indicate a checkpoint from which to fine-tune, we'll call training with the --checkpoint_path flag and assign it an absolute path to a checkpoint file.
