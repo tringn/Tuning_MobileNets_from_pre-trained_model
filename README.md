@@ -132,7 +132,7 @@ python3 freeze_graph.py \
 Run the code below:
 ```ruby
 python3 label_image.py \
---graph=./sat_icpv3_frz_graph.pb \
+--graph=./sat_mobilenet_v2_frz.pb \
 --labels=./data/sat/labels.txt \
 --image=<PATH_TO_IMAGE>
 ```
