@@ -10,7 +10,7 @@ Package Requirements:
 - tensorflow>=1.7.0,<=1.8.0
 ```
 # Installation
-# I/ Prepare dataset to train
+## I/ Prepare dataset to train
 Create training directory ./data/sat/sat_photos. Then download sat dataset photos to train. Each category is stored in a separated folder whose name is "class" to describe. (e.g. customer, worker).
 Save these folders in ./data/sat/sat_photos/
 Dataset storage will be in that structure:
@@ -22,7 +22,7 @@ data
         └── worker
 ```
 
-# II/ Modify set-up file to convert dataset to TRRecord format
+## II/ Modify set-up file to convert dataset to TRRecord format
 Since this set-up is prepared by Tensorflow to train / tuning 4 dataset (Flower, Cifar10, MNIST, ImageNet), we have to modify some set-up files to tuning our own model.
 I've already trained my own model called poses. Now you can modify my set-up to train your own model.
 1. Copy datasets/convert_poses.py to datasets/convert_sat.py
@@ -36,12 +36,12 @@ This number depends on the size of your dataset. Then replace all words "poses" 
 - Add **_sat_** to **_tf.app.flags.DEFINE_string_**
 - Add command **_convert_sat.run(FLAGS.dataset_dir)_** to "if" in **_main(_)**
 
-# III/ Convert to TFRecord Format
+## III/ Convert to TFRecord Format
 For each dataset, we need to convert raw data to TensorFlow's native TFRecord format. Each TFRecord contains a TF-Example protocol buffer.
 ```ruby
 python3 download_and_convert_data.py --dataset_name=sat --dataset_dir=./data/sat
 ```
-# IV/ Modify set-up file to train model
+## IV/ Modify set-up file to train model
 1. Copy datasets/poses.py to datasets/sat.py.
 ```ruby
 cp ./datasets/poses.py ./datasets/sat.py
@@ -55,7 +55,7 @@ cp ./datasets/poses.py ./datasets/sat.py
 - Add **_from datasets import sat_**
 - Add **_'sat': sat,_** to datasets_map
 
-# V/ Download Checkpoint of pre-trained model of Mobilenet V2 and fine-tune your own model
+## V/ Download Checkpoint of pre-trained model of Mobilenet V2 and fine-tune your own model
 1. Download Checkpoint of MobilenetV2 pre-trained model
 ```ruby
 mkdir ./my_checkpoints
@@ -97,7 +97,7 @@ python3 train_image_classifier.py \
 ```
 For more information about Gradient Descent optimizer algorithm, you can refer at: http://ruder.io/optimizing-gradient-descent/index.html
 
-# VI/ Evaluating performance of a model
+## VI/ Evaluating performance of a model
 To evaluate the performance of a model, you can use the eval_image_classifier.py script, as shown below.
 ```ruby
 python3 eval_image_classifier.py \
@@ -109,7 +109,7 @@ python3 eval_image_classifier.py \
     --model_name=mobilenet_v2 \
     --eval_image_size=224
 ```
-# VII/ Exporting the Inference Graph
+## VII/ Exporting the Inference Graph
 Saves out a GraphDef containing the architecture of the model.
 To use it with a model name defined by slim, run:
 ```ruby
@@ -120,7 +120,7 @@ python3 export_inference_graph.py \
   --dataset_name=sat \
   --image_size=224
 ```
-# VIII/ Freezing the exported Graph
+## VIII/ Freezing the exported Graph
   If you then want to use the resulting model with your own or pretrained checkpoints as part of a mobile model, you can run freeze_graph to get a graph def with the variables inlined as constants using:
   ```ruby
 python3 freeze_graph.py \
@@ -130,7 +130,7 @@ python3 freeze_graph.py \
 --output_graph=./sat_mobilenet_v2_frz.pb \
 --output_node_names=MobilenetV2/Predictions/Reshape_1
   ```
-# IX/ Test your model
+## IX/ Test your model
 Run the code below:
 ```ruby
 python3 label_image.py \
