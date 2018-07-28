@@ -37,7 +37,7 @@ import tensorflow as tf
 from datasets import dataset_utils
 
 # The URL where the Flowers data can be downloaded.
-#_DATA_URL = 'http://download.tensorflow.org/example_images/pose_photos.tgz'
+#_DATA_URL = 'http://download.tensorflow.org/example_images/poses_photos.tgz'
 
 # The number of images in the validation set.
 _NUM_VALIDATION = 0
@@ -80,11 +80,11 @@ def _get_filenames_and_classes(dataset_dir):
     A list of image file paths, relative to `dataset_dir` and the list of
     subdirectories, representing class names.
   """
-  pose_root = os.path.join(dataset_dir, 'pose_photos')
+  poses_root = os.path.join(dataset_dir, 'poses_photos')
   directories = []
   class_names = []
-  for filename in os.listdir(pose_root):
-    path = os.path.join(pose_root, filename)
+  for filename in os.listdir(poses_root):
+    path = os.path.join(poses_root, filename)
     if os.path.isdir(path):
       directories.append(path)
       class_names.append(filename)
@@ -160,7 +160,7 @@ def _clean_up_temporary_files(dataset_dir):
   filepath = os.path.join(dataset_dir, filename)
   tf.gfile.Remove(filepath)
 
-  tmp_dir = os.path.join(dataset_dir, 'pose_photos')
+  tmp_dir = os.path.join(dataset_dir, 'poses_photos')
   tf.gfile.DeleteRecursively(tmp_dir)
 
 
