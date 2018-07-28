@@ -77,12 +77,12 @@ if __name__ == "__main__":
   model_file = \
     "tensorflow/examples/label_image/data/inception_v3_2016_08_28_frozen.pb"
   label_file = "tensorflow/examples/label_image/data/imagenet_slim_labels.txt"
-  input_height = 299
-  input_width = 299
+  input_height = 224
+  input_width = 224
   input_mean = 0
   input_std = 255
   input_layer = "input"
-  output_layer = "InceptionV3/Predictions/Reshape_1"
+  output_layer = "InceptionV2/Predictions/Reshape_1"
 
   parser = argparse.ArgumentParser()
   parser.add_argument("--image", help="image to be processed")

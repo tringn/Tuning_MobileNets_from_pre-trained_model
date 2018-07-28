@@ -37,10 +37,10 @@ import tensorflow as tf
 from datasets import dataset_utils
 
 # The URL where the Flowers data can be downloaded.
-#_DATA_URL = 'http://download.tensorflow.org/example_images/pose_photos.tgz'
+#_DATA_URL = 'http://download.tensorflow.org/example_images/hospital_photos.tgz'
 
 # The number of images in the validation set.
-_NUM_VALIDATION = 0
+_NUM_VALIDATION = 600
 
 # Seed for repeatability.
 _RANDOM_SEED = 0
@@ -80,11 +80,11 @@ def _get_filenames_and_classes(dataset_dir):
     A list of image file paths, relative to `dataset_dir` and the list of
     subdirectories, representing class names.
   """
-  pose_root = os.path.join(dataset_dir, 'pose_photos')
+  hospital_root = os.path.join(dataset_dir, 'hospital_photos')
   directories = []
   class_names = []
-  for filename in os.listdir(pose_root):
-    path = os.path.join(pose_root, filename)
+  for filename in os.listdir(hospital_root):
+    path = os.path.join(hospital_root, filename)
     if os.path.isdir(path):
       directories.append(path)
       class_names.append(filename)
@@ -99,7 +99,7 @@ def _get_filenames_and_classes(dataset_dir):
 
 
 def _get_dataset_filename(dataset_dir, split_name, shard_id):
-  output_filename = 'poses_%s_%05d-of-%05d.tfrecord' % (
+  output_filename = 'hospital_%s_%05d-of-%05d.tfrecord' % (
       split_name, shard_id, _NUM_SHARDS)
   return os.path.join(dataset_dir, output_filename)
 
@@ -160,7 +160,7 @@ def _clean_up_temporary_files(dataset_dir):
   filepath = os.path.join(dataset_dir, filename)
   tf.gfile.Remove(filepath)
 
-  tmp_dir = os.path.join(dataset_dir, 'pose_photos')
+  tmp_dir = os.path.join(dataset_dir, 'hospital_photos')
   tf.gfile.DeleteRecursively(tmp_dir)
 
 
@@ -208,4 +208,4 @@ def run(dataset_dir):
   dataset_utils.write_label_file(labels_to_class_names, dataset_dir)
 
   #_clean_up_temporary_files(dataset_dir)
-  print('\nFinished converting the Poses dataset!')
+  print('\nFinished converting the Hospital dataset!')

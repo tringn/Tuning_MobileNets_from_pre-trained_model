@@ -46,7 +46,7 @@ FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string(
     'dataset_name',
     None,
-    'The name of the dataset to convert, one of "cifar10", "flowers", "mnist", "poses", "hospital".')
+    'The name of the dataset to convert, one of "cifar10", "flowers", "mnist", "poses".')
 
 tf.app.flags.DEFINE_string(
     'dataset_dir',
@@ -68,8 +68,6 @@ def main(_):
     download_and_convert_mnist.run(FLAGS.dataset_dir)
   elif FLAGS.dataset_name == 'poses':
     convert_poses.run(FLAGS.dataset_dir)
-  elif FLAGS.dataset_name == 'hospital':
-    convert_hospital.run(FLAGS.dataset_dir)
   else:
     raise ValueError(
         'dataset_name [%s] was not recognized.' % FLAGS.dataset_name)
